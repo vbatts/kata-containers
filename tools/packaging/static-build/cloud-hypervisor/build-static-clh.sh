@@ -72,9 +72,9 @@ build_clh_from_source() {
 
     if [ -n "${features}" ]; then
         info "Build cloud-hypervisor enabling the following features: ${features}"
-        ./scripts/dev_cli.sh build --release --libc musl --features "${features}"
+        ./scripts/dev_cli.sh build --release --libc musl --features "${features}" --runtime "sudo nerdctl"
     else
-        ./scripts/dev_cli.sh build --release --libc musl
+        ./scripts/dev_cli.sh build --release --libc musl --runtime "sudo nerdctl"
     fi
     rm -f cloud-hypervisor
     cp build/cargo_target/$(uname -m)-unknown-linux-musl/release/cloud-hypervisor .
